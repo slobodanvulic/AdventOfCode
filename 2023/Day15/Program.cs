@@ -7,10 +7,8 @@ var firstPart = inputData.Split(',', StringSplitOptions.TrimEntries).Select(Hash
 Console.WriteLine($"First part {firstPart}");
 
 
-var regexDash = @".+-$";
 var boxes = new List<List<Lens>>(256);
 boxes.AddRange(Enumerable.Range(0, 256).Select(i => new List<Lens>()));
-
 
 foreach (var instruction in inputData.Split(',', StringSplitOptions.TrimEntries))
 {
