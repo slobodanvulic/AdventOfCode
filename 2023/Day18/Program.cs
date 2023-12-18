@@ -22,6 +22,9 @@ Console.ReadKey();
 
 static double Area(IEnumerable<Instruction> instructions)
 {
+    // Calculation should be done using Shoelace formula
+    // Polygon.Area (from NetTopologySuite.Geometries) uses Shoelace to calculate area
+
     var coordinates = new List<Coordinate>() { new Coordinate(0, 0) };
     var current = new Location(0, 0);
 
@@ -34,7 +37,11 @@ static double Area(IEnumerable<Instruction> instructions)
     var geometryFactory = new GeometryFactory();
     var polygon = geometryFactory.CreatePolygon(coordinates.ToArray());
 
-    return polygon.Area + polygon.Boundary.Length / 2 + 1; 
+    // Pick's theorem
+    // interior = area - boyndary / 2 + 1
+    // result = interior + boundary
+
+    return polygon.Area + polygon.Boundary.Length / 2 + 1;
 }
 
 static string ToDirection(string number) =>
